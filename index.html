@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+<title>HAPPY BIRTHDAY THANGAMEY</title>
+<style> 
+*{
+   margin:0;
+   padding:0;
+   box-sizing:border-box;
+   font-family:Arial,sans-serif; 
+}    
+body{
+    background:linear-gradient(135deg,#ff4d88,#ff99cc);
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#login{
+    background:white;
+    color:#333;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:320px;
+    box-shadow:0 0 30px rgba(0,0,0,.3);
+}
+h1{
+    color:#ff0066;
+     margin-bottom:20px;
+}
+input{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border-radius:10px;
+    border:2px solid pink;
+    margin-bottom:15px;
+}
+button{
+    padding:12px 30px;
+    font-size:18px;
+    background:#ff0066;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}    
+button:hover{
+    background:#ff3385;
+}
+#error{
+    margin-top:15px;
+    color:red;
+    font-weight:bold;
+}
+#main{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background:linear-gradient(135deg,#ff4d88,#ff99cc);
+    color: white;
+    text-align:center;
+    padding:20px;
+}
+.hero{
+    margin-top: 50px;
+}
+.hero h2{
+    font-size:45px;
+    animation:glow 2s infinite;
+}
+.hero p{
+    margin-top:20px;
+    font-size:22px;
+    line-height:35px;
+}
+@keyframes glow{
+    0%{text-shadow:0 0 10px white;}
+    50%{text-shadow:0 0 30px red;}
+    100%{text-shadow:0 0 10px white;}
+}
+.gallery{
+    margin-top:50px;
+}
+.gallery img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    margin:10px;
+    border-radius:20px;
+    box-shadow:0 0 20px white;
+}    
+.heart{
+    position:fixed;
+    bottom:-30px;
+    color:red;
+    font-size:25px;
+    animation:float 8s linear infinite;
+}
+@keyframes float{
+    0%{
+        transform:translateY(0);
+        opacity: 1;
+      }
+      100%{
+        transform:translateY(-120vh);
+        opacity:0;
+      }
+}
+#final{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-size:45px;
+    font-weight:bold;
+}
+.balloon{
+    position:fixed;
+    bottom:-150px;
+    width:70px;
+}
+@keyframes balloonUp{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-120vh)}
+}
+.rose{
+    position:fixed;
+    top:-50px;
+    font-size:30px;
+    animation:rosefall 8s linear infinite;
+}
+@keyframes rosefall{
+    0%{transform:translateY(0) rotate(0deg);}
+    100%{transform:translateY(120vh) rotate(360deg);}
+}
+</style>    
+</head>
+<body>
+    <div id="login">
+     <h1>🔐 My Surprise</h1>
+    <input
+    type="password"
+    id="password"
+    placeholder="Enter password">
+    <button onclick="checkpassword()">open❤️</button>
+     <p id="error"></p>  
+     </div>
+     <div id="main">
+        <audio id="music" autoplay loop controls>
+         <source src="bgm.aac" type="audio/mpeg">   
+        </audio>   
+    <div class="hero">
+    <h2>HAPPY BIRTHDAY THANGAMEY 😍</h2>
+    <P> Every heartbeat of mine loves you.
+        This surprise is specially made only for you.
+        I LOVE YOU😘❤️
+    </P>
+    </div>
+    <div class="gallery">
+    <img src="LS.jpeg">
+    <img src="LS123.jpeg">
+    <img src="LS28.jpeg">
+    <img src="2809.jpeg">
+    </div>
+<br><br>
+<button onclick="showFinal()"> 
+    Final surprise ❤️
+</button> 
+</div>
+<div id="final">
+    <h1>
+        I LOVE YOU😘
+        <br><br>
+        FORVER
+        <br><br>
+        THANGAMEY❤️
+    </h1>
+</div> 
+<script>
+    function checkpassword() {
+        let pass=document.getElementById("password").value;
+        if(pass=="Laksh santhiya"){
+            document.getElementById("login").style.display="none";
+            document.getElementById("main").style.display="block";
+           // document.getElementById("music").play();
+            createHearts();
+            createBalloons();
+            createRoses();
+        confetti({
+            particleCount:250,
+            spread:180,
+            orgin:{y:0.6 }
+        });   
+        }
+    else{
+        document.getElementById("error").innerHTML="Wrong password";
+    }    
+    }
+function createHearts(){
+    setInterval(function() {
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(20+Math.random()*30)+"px";
+        heart.style.animationDuration=(5+Math.random()*5)+"s";
+        document.body.appendChild(heart);
+        setTimeout(function(){
+            heart.remove();
+        },10000);
+    },300);
+}                 
+function createBalloons(){
+    setInterval(function(){
+        let b=document.createElement("div");
+        b.className="balloon";
+        b.innerHTML="🎈"
+        b.style.left=Math.random()*100+"vw";
+        b.style.fontSize=(40+Math.random()*30)+"px";
+        document.body.appendChild(b);
+        setTimeout(() => {
+            b.remove();
+        },10000);
+    },800);
+}
+function createRoses(){
+    setInterval(function(){
+        let r=document.createElement("div");
+        r.className="rose";
+        r.innerHTML="🌹";
+        r.style.left=Math.random()*100+"vw";
+        document.body.appendChild(r);
+        setTimeout(()=> {
+            r.remove();
+        },8000);
+    },500); 
+}
+function showFinal(){
+    document.getElementById("main").style.display="none";
+    document.getElementById("final").style.display="flex";
+}    
+</script>  
+<script
+    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3
+    /dist/confetti.browser.min.js"></script>
+</body>
+</html>
+
